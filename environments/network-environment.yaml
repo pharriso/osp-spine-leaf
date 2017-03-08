@@ -1,0 +1,192 @@
+# Enable the creation of Neutron networks for isolated Overcloud
+# traffic and configure each role to assign ports (related
+# to that role) on these networks.
+resource_registry:
+  OS::TripleO::Network::External: ../network/external.yaml
+  OS::TripleO::Network::InternalApi: ../network/internal_api.yaml
+  OS::TripleO::Network::StorageMgmt: ../network/storage_mgmt.yaml
+  OS::TripleO::Network::StorageRack1: ../network/storageRack1.yaml
+  OS::TripleO::Network::StorageRack2: ../network/storageRack2.yaml
+  OS::TripleO::Network::StorageRack3: ../network/storageRack3.yaml
+  OS::TripleO::Network::StorageRack4: ../network/storageRack4.yaml
+  OS::TripleO::Network::TenantRack1: ../network/tenantRack1.yaml
+  OS::TripleO::Network::TenantRack2: ../network/tenantRack2.yaml
+  OS::TripleO::Network::TenantRack3: ../network/tenantRack3.yaml
+  OS::TripleO::Network::TenantRack4: ../network/tenantRack4.yaml
+  # Storage and tenant networks not required for leaf-spine
+  #OS::TripleO::Network::Storage: ../network/storage.yaml
+  #OS::TripleO::Network::Tenant: ../network/tenant.yaml
+  # Management network is optional and disabled by default.
+  # To enable it, include environments/network-management.yaml
+  #OS::TripleO::Network::Management: ../network/management.yaml
+
+  # Port assignments for the VIPs
+  OS::TripleO::Network::Ports::ExternalVipPort: ../network/ports/external.yaml
+  OS::TripleO::Network::Ports::InternalApiVipPort: ../network/ports/internal_api.yaml
+  OS::TripleO::Network::Ports::StorageVipPort: ../network/ports/noop.yaml
+  OS::TripleO::Network::Ports::StorageMgmtVipPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::Network::Ports::RedisVipPort: ../network/ports/vip.yaml
+
+  # Port assignments for service virtual IPs for the controller role
+  OS::TripleO::Controller::Ports::RedisVipPort: ../network/ports/vip.yaml
+  # Port assignments for the controller role
+  OS::TripleO::Controller::Ports::ExternalPort: ../network/ports/external.yaml
+  OS::TripleO::Controller::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::Controller::Ports::StoragePort: ../network/ports/noop.yaml
+  OS::TripleO::Controller::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::Controller::Ports::TenantPort: ../network/ports/noop.yaml
+  #OS::TripleO::Controller::Ports::ManagementPort: ../network/ports/management.yaml
+
+  # Port assignments for the compute role
+  OS::TripleO::Compute::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::Compute::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::Compute::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::Compute::Ports::StorageMgmtPort: ../network/ports/noop.yaml
+  OS::TripleO::Compute::Ports::TenantPort: ../network/ports/tenant.yaml
+  #OS::TripleO::Compute::Ports::ManagementPort: ../network/ports/management.yaml
+
+  # Port assignments for the computeRack1 role
+  OS::TripleO::ComputeRack1::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeRack1::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::ComputeRack1::Ports::StoragePort: ../network/ports/storageRack1.yaml
+  OS::TripleO::ComputeRack1::Ports::StorageMgmtPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeRack1::Ports::TenantPort: ../network/ports/tenantRack1.yaml
+  #OS::TripleO::ComputeRack1::Ports::ManagementPort: ../network/ports/management.yaml
+
+  # Port assignments for the computeRack2 role
+  OS::TripleO::ComputeRack2::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeRack2::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::ComputeRack2::Ports::StoragePort: ../network/ports/storageRack2.yaml
+  OS::TripleO::ComputeRack2::Ports::StorageMgmtPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeRack2::Ports::TenantPort: ../network/ports/tenantRack2.yaml
+  #OS::TripleO::ComputeRack2::Ports::ManagementPort: ../network/ports/management.yaml
+
+  # Port assignments for the computeRack3 role
+  OS::TripleO::ComputeRack3::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeRack3::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::ComputeRack3::Ports::StoragePort: ../network/ports/storageRack3.yaml
+  OS::TripleO::ComputeRack3::Ports::StorageMgmtPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeRack3::Ports::TenantPort: ../network/ports/tenantRack3.yaml
+  #OS::TripleO::ComputeRack3::Ports::ManagementPort: ../network/ports/management.yaml
+
+  # Port assignments for the computeRack4 role
+  OS::TripleO::ComputeRack4::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeRack4::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::ComputeRack4::Ports::StoragePort: ../network/ports/storageRack4.yaml
+  OS::TripleO::ComputeRack4::Ports::StorageMgmtPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeRack4::Ports::TenantPort: ../network/ports/tenantRack4.yaml
+  #OS::TripleO::ComputeRack4::Ports::ManagementPort: ../network/ports/management.yaml
+
+  # Port assignments for the ceph storage role
+  OS::TripleO::CephStorage::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::CephStorage::Ports::InternalApiPort: ../network/ports/noop.yaml
+  OS::TripleO::CephStorage::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::CephStorage::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::CephStorage::Ports::TenantPort: ../network/ports/noop.yaml
+  #OS::TripleO::CephStorage::Ports::ManagementPort: ../network/ports/management.yaml
+
+  # Port assignments for the swift storage role
+  OS::TripleO::SwiftStorage::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::SwiftStorage::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::SwiftStorage::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::SwiftStorage::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::SwiftStorage::Ports::TenantPort: ../network/ports/noop.yaml
+  #OS::TripleO::SwiftStorage::Ports::ManagementPort: ../network/ports/management.yaml
+
+  # Port assignments for the block storage role
+  OS::TripleO::BlockStorage::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::BlockStorage::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::BlockStorage::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::BlockStorage::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::BlockStorage::Ports::TenantPort: ../network/ports/noop.yaml
+  #OS::TripleO::BlockStorage::Ports::ManagementPort: ../network/ports/management.yaml
+
+  # Network Interface templates to use (these files must exist)
+  OS::TripleO::BlockStorage::Net::SoftwareConfig:
+    ../nic-configs/cinder-storage.yaml
+  OS::TripleO::Compute::Net::SoftwareConfig:
+    ../nic-configs/compute.yaml
+  OS::TripleO::Controller::Net::SoftwareConfig:
+    ../nic-configs/controller.yaml
+  OS::TripleO::ObjectStorage::Net::SoftwareConfig:
+    ../nic-configs/swift-storage.yaml
+  OS::TripleO::CephStorage::Net::SoftwareConfig:
+    ../nic-configs/ceph-storage.yaml
+  OS::TripleO::Networker::Net::SoftwareConfig:
+    ../nic-configs/networker.yaml
+  OS::TripleO::ComputeRack1::Net::SoftwareConfig:
+    ../nic-configs/computeRack1.yaml
+  OS::TripleO::ComputeRack2::Net::SoftwareConfig:
+    ../nic-configs/computeRack2.yaml
+  OS::TripleO::ComputeRack3::Net::SoftwareConfig:
+    ../nic-configs/computeRack3.yaml
+  OS::TripleO::ComputeRack4::Net::SoftwareConfig:
+    ../nic-configs/computeRack4.yaml
+
+parameter_defaults:
+  # This section is where deployment-specific configuration is done
+  # CIDR subnet mask length for provisioning network
+  ControlPlaneSubnetCidr: '24'
+  # Gateway router for the provisioning network (or Undercloud IP)
+  ControlPlaneDefaultRoute: 192.168.90.1
+  EC2MetadataIp: 192.168.90.1  # Generally the IP of the Undercloud
+  # Customize the IP subnets to match the local environment
+  ExternalNetCidr: 192.168.10.0/24
+  InternalApiNetCidr: 192.168.20.0/24
+  StorageMgmtNetCidr: 192.168.70.0/24
+  StorageRack1NetCidr: 172.168.10.0/24
+  StorageRack2NetCidr: 172.168.20.0/24
+  StorageRack3NetCidr: 172.168.30.0/24
+  StorageRack4NetCidr: 172.168.40.0/24
+  TenantRack1NetCidr: 10.0.10.0/24
+  TenantRack2NetCidr: 10.0.20.0/24
+  TenantRack3NetCidr: 10.0.30.0/24
+  TenantRack4NetCidr: 10.0.40.0/24
+  # Customize the VLAN IDs to match the local environment
+  ExternalNetworkVlanID: 10
+  InternalApiNetworkVlanID: 20
+  StorageRack1NetworkVlanID: 30
+  StorageRack2NetworkVlanID: 30
+  StorageRack3NetworkVlanID: 30
+  StorageRack4NetworkVlanID: 30
+  StorageMgmtNetworkVlanID: 70
+  TenantRack1NetworkVlanID: 40
+  TenantRack2NetworkVlanID: 40
+  TenantRack3NetworkVlanID: 40
+  TenantRack4NetworkVlanID: 40
+  TenantRack1InterfaceDefaultRoute: 10.0.10.1 
+  TenantRack2InterfaceDefaultRoute: 10.0.20.1 
+  TenantRack3InterfaceDefaultRoute: 10.0.30.1 
+  TenantRack4InterfaceDefaultRoute: 10.0.40.1 
+  StorageRack1InterfaceRoute: 172.168.10.1
+  StorageRack2InterfaceRoute: 172.168.20.1
+  StorageRack3InterfaceRoute: 172.168.30.1
+  StorageRack4InterfaceRoute: 172.168.40.1
+  # Customize the IP ranges on each network to use for static IPs and VIPs
+  InternalApiAllocationPools: [{'start': '192.168.20.10', 'end': '192.168.20.50'}]
+  StorageMgmtAllocationPools: [{'start': '192.168.70.10', 'end': '192.168.70.50'}]
+  StorageRack1AllocationPools: [{'start': '172.168.10.10', 'end': '172.168.10.50'}]
+  StorageRack2AllocationPools: [{'start': '172.168.20.10', 'end': '172.168.20.50'}]
+  StorageRack3AllocationPools: [{'start': '172.168.30.10', 'end': '172.168.30.50'}]
+  StorageRack4AllocationPools: [{'start': '172.168.40.10', 'end': '172.168.40.50'}]
+  TenantRack1AllocationPools: [{'start': '10.0.10.10', 'end': '10.0.10.50'}]
+  TenantRack2AllocationPools: [{'start': '10.0.20.10', 'end': '10.0.20.50'}]
+  TenantRack3AllocationPools: [{'start': '10.0.30.10', 'end': '10.0.30.50'}]
+  TenantRack4AllocationPools: [{'start': '10.0.40.10', 'end': '10.0.40.50'}]
+  # Leave room if the external network is also used for floating IPs
+  ExternalAllocationPools: [{'start': '192.168.10.10', 'end': '192.168.10.50'}]
+  # Gateway router for the external network
+  ExternalInterfaceDefaultRoute: 192.168.10.1
+  # Uncomment if using the Management Network (see network-management.yaml)
+  # ManagementNetCidr: 10.0.1.0/24
+  # ManagementAllocationPools: [{'start': '10.0.1.10', 'end', '10.0.1.50'}]
+  # Use either this parameter or ControlPlaneDefaultRoute in the NIC templates
+  # ManagementInterfaceDefaultRoute: 10.0.1.1
+  # Define the DNS servers (maximum 2) for the overcloud nodes
+  DnsServers: ["192.168.10.1"]
+  # Set to empty string to enable multiple external networks or VLANs
+  NeutronExternalNetworkBridge: "''"
+  # The tunnel type for the tenant network (vxlan or gre). Set to '' to disable tunneling.
+  NeutronTunnelTypes: 'vxlan'
+  # Customize bonding options, e.g. "mode=4 lacp_rate=1 updelay=1000 miimon=100"
+  BondInterfaceOvsOptions: "mode=1"

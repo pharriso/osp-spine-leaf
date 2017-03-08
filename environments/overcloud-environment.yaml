@@ -1,0 +1,22 @@
+parameter_defaults:
+  CloudDomain: 'example.com'
+  TimeZone: 'Europe/London'
+ 
+  # Leaf-Spine flavors
+  OvercloudComputeRack1Flavor: computeRack1
+  OvercloudComputeRack2Flavor: computeRack2
+  OvercloudComputeRack3Flavor: computeRack3
+  OvercloudComputeRack4Flavor: computeRack4
+
+  # Hostname Formats
+  ComputeRack1HostnameFormat: 'computerack1-%index%'
+  ComputeRack2HostnameFormat: 'computerack2-%index%'
+  ComputeRack3HostnameFormat: 'computerack3-%index%'
+  ComputeRack4HostnameFormat: 'computerack4-%index%'
+  ControllerHostnameFormat: 'controller-%index%'
+
+  # Leaf-spine host count
+  ComputeRack1Count: 1
+  ComputeRack2Count: 1
+  ComputeRack3Count: 0
+  ComputeRack4Count: 0

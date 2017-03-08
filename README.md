@@ -5,9 +5,12 @@ Configures per rack tenant & storage networks for use with spine+leaf & RHEL OSP
 To use the templates (as stack user):
 
 mkdir templates
+
 cp -r /usr/share/openstack-tripleo-heat-templates/* templates
 
 Overlay the template files in this repo over the copied templates directory.
+
+Update ~stack/templates/environments/storage-environment.yaml, ~stack/templates/environments/network-environment.yaml to suit your environment & ~stack/templates/environments/overcloud-environment.yaml
 
 Create new flavors for the number of racks required:
 
@@ -17,8 +20,6 @@ openstack flavor set --property capabilities:boot_option='local' --property capa
 Tag ironic nodes:
 
 ironic node-update compute-1 add properties/capabilities=profile:computeRack1,boot_option:local
-
-Update ~stack/templates/environments/storage-environment.yaml, ~stack/templates/environments/network-environment.yaml to suit your environment & ~stack/templates/environments/overcloud-environment.yaml
 
 Deploy:
 
